@@ -50,10 +50,12 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants: restaurantsFilter, keyword })
 })
 
-app.get('/:restaurant_id', (req, res) => {
-  const restaurant = restaurants.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-
-  res.render('show', { restaurant: restaurant })
+app.get('/restaurants/:restaurantId', (req, res) => {
+  const id = req.params.restaurantId
+  return restaurants.findById(id)
+    .lean()
+    .then(restaurant => res.render("show", { restaurant }))
+    .catch(err => console.log(err))
 })
 
 //add new restaurant page

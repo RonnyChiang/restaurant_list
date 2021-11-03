@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Restaurant = require('../restaurant') // 載入 todo model
+const restaurants = require('../restaurant') // 載入 model
 
 // get restaurant list from json
 const restaurantList = require("../../restaurant.json").results
@@ -13,7 +13,7 @@ db.on('error', () => {
 db.once("open", () => {
   console.log("running restaurantSeeder script...")
 
-  Restaurant.create(restaurantList)
+  restaurants.create(restaurantList)
     .then(() => {
       console.log("restaurantSeeder done!")
       // db.close()

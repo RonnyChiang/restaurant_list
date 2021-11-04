@@ -46,10 +46,6 @@ app.get('/search', (req, res) => {
   const keywords = req.query.keywords
   const keyword = req.query.keywords.trim().toLowerCase()
 
-  // const restaurantsFilter = restaurants.filter(restaurant => {
-  //   return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
-  // })
-
   restaurants.find({})
     .lean()
     .then(restaurant => {
@@ -63,23 +59,24 @@ app.get('/search', (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.get('/restaurants/:restaurantId', (req, res) => {
-  const id = req.params.restaurantId
-  return restaurants.findById(id)
-    .lean()
-    .then(restaurant => res.render("show", { restaurant }))
-    .catch(err => console.log(err))
-})
-
 //add new restaurant page
 app.get("/restaurants/new", (req, res) => {
-  return res.render('new')
+  return res.render("new")
 })
 
 // add new restaurant
 app.post("/restaurants", (req, res) => {
   return restaurants.create(req.body)
     .then(() => res.redirect("/"))
+    .catch(err => console.log(err))
+})
+
+// info page
+app.get('/restaurants/:restaurantId', (req, res) => {
+  const id = req.params.restaurantId
+  return restaurants.findById(id)
+    .lean()
+    .then(restaurant => res.render("show", { restaurant }))
     .catch(err => console.log(err))
 })
 

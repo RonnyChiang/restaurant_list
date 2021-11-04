@@ -62,8 +62,9 @@
     <div class="form-group row justify-content-center">
       <label for="google_map" class="col-sm-2 col-form-label">Google Map 連結<span class="text-danger">*</span></label>
       <div class="col-sm-4">
-        <input type="url" class="form-control" id="google_map" placeholder="https://www.google.com.tw/maps/place/XXXX"
-          pattern="https://.*" value="{{ restaurant.google_map }}" name="google_map" required>
+        <input type="url" class="form-control" id="google_map" placeholder="請從google map 複製網址"
+          pattern="(^https://goo.gl/maps/.*)|(^https://www.google.com.tw/maps/.*)|(^https://www.google.com/maps/.*)"
+          value="{{ restaurant.google_map }}" name="google_map" required>
       </div>
     </div>
 

@@ -103,14 +103,14 @@ app.post("/restaurants/:restaurantId/edit", (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.get("/restaurants-fake/:restaurantId", (req, res) => {
-  const id = req.params.restaurantId;
-  return restaurants
-    .findById(id)
-    .lean()
-    .then(restaurant => res.json({ restaurant }))
-    .catch(err => console.log(err));
-});
+//delete function
+app.post('/restaurants/:restaurantId/delete', (req, res) => {
+  const id = req.params.restaurantId
+  return restaurants.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // start and listen on the Express server
 app.listen(port, () => {

@@ -26,7 +26,7 @@ app.set('view engine', 'handlebars')
 
 // static files
 app.use(express.static('public'))
-
+//  body-parser
 app.use(express.urlencoded({ extended: true }))
 
 
@@ -37,17 +37,30 @@ app.get('/', (req, res) => {
     .then(restaurantsData => res.render("index", { restaurantsData }))
     .catch(err => console.log(err))
 })
-
+// search
 app.get('/search', (req, res) => {
   if (!req.query.keywords) {
     res.redirect('/')
   }
 
-  const keyword = req.query.keywords
-  const restaurantsFilter = restaurants.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
-  })
-  res.render('index', { restaurants: restaurantsFilter, keyword })
+  const keywords = req.query.keywords
+  const keyword = req.query.keywords.trim().toLowerCase()
+
+  // const restaurantsFilter = restaurants.filter(restaurant => {
+  //   return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
+  // })
+
+  restaurants.find({})
+    .lean()
+    .then(restaurant => {
+      const restaurantsFilter = restaurant.filter(
+        data =>
+          data.name.toLowerCase().includes(keyword) ||
+          data.category.includes(keyword)
+      )
+      res.render("index", { restaurantsData: restaurantsFilter, keywords })
+    })
+    .catch(err => console.log(err))
 })
 
 app.get('/restaurants/:restaurantId', (req, res) => {
@@ -60,12 +73,12 @@ app.get('/restaurants/:restaurantId', (req, res) => {
 
 //add new restaurant page
 app.get("/restaurants/new", (req, res) => {
-  res.render('new')
+  return res.render('new')
 })
 
 // add new restaurant
 app.post("/restaurants", (req, res) => {
-  restaurants.create(req.body)
+  return restaurants.create(req.body)
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))
 })

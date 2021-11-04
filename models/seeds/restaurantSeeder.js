@@ -19,4 +19,6 @@ db.once("open", () => {
       db.close()
     })
     .catch(err => console.log(err))
+    // 退出
+    .finally(() => process.exit())
 })

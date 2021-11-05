@@ -5,6 +5,7 @@ const router = express.Router()
 const restaurants = require('../../models/restaurant')
 // 定義首頁路由
 router.get('/', (req, res) => {
+
   restaurants.find({})
     .lean()
     .then(restaurantsData => res.render("index", { restaurantsData }))

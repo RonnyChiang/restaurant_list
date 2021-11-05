@@ -30,7 +30,7 @@ const restaurantSchema = new Schema({
     required: true // 這是個必填欄位
   },
   rating: {
-    type: Number, // 資料型別是字串
+    type: Number, // 資料型別是數字
     required: true // 這是個必填欄位
   },
   description: {

@@ -6,22 +6,54 @@ const restaurants = require('../../models/restaurant')
 
 // search
 router.get('/search', (req, res) => {
-  if (!req.query.keywords) {
-    res.redirect('/')
-  }
 
   const keywords = req.query.keywords
   const keyword = req.query.keywords.trim().toLowerCase()
 
+  const sortItem = req.query.sort
+  const sortMethod = {}
+  let sortInput = ''
+
+  switch (sortItem) {
+    case 'name_asc':
+      sortMethod['name'] = 'asc'
+      sortInput = `A > Z`
+      break
+    case 'name_desc':
+      sortMethod['name'] = 'desc'
+      sortInput = 'Z > A'
+      break
+    case 'rating_desc':
+      sortMethod['rating'] = 'desc'
+      sortInput = '評分最高'
+      break
+    case 'category':
+      sortMethod['category'] = 'asc'
+      sortInput = '類別'
+      break
+    case 'location':
+      sortMethod['location'] = 'asc'
+      sortInput = '地區'
+      break
+    default:
+      sortMethod['_id'] = 'asc'
+  }
+
+  // if (!req.query.keywords) {
+  //   console.log("wth")
+  //   res.redirect('/')
+  // }
+
   restaurants.find({})
     .lean()
+    .sort(sortMethod)
     .then(restaurant => {
       const restaurantsFilter = restaurant.filter(
         data =>
           data.name.toLowerCase().includes(keyword) ||
           data.category.includes(keyword)
       )
-      res.render("index", { restaurantsData: restaurantsFilter, keywords })
+      res.render("index", { restaurantsData: restaurantsFilter, keywords, sortInput })
     })
     .catch(err => {
       console.log(err)

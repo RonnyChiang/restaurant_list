@@ -2,9 +2,20 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2 search-bar-title">尋找餐廳：</h4>
-        <div class="input-group">
+      <h4 class="mb-2 search-bar-title">尋找餐廳：</h4>
+      <form action="/restaurants/search" class="d-flex">
+        <div class="input-group col-sm-3">
+          <select class=" form-control" id="sort" name="sort" onchange="this.form.submit()">
+            <option value="not-Change">{{#if sortInput}} {{sortInput}} {{else}} 請選擇排序 {{/if}}</option>
+            <option value="name_asc">A > Z</option>
+            <option value="name_desc">Z > A</option>
+            <option value="rating_desc">評分最高</option>
+            <option value="category">類別</option>
+            <option value="location">地區</option>
+
+          </select>
+        </div>
+        <div class="input-group col-sm-9">
           <input type="text" name="keywords" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             aria-describedby="search-button" value="{{keywords}}" />
           <div class="input-group-append">
@@ -13,6 +24,7 @@
             </button>
           </div>
         </div>
+
       </form>
     </div>
   </div>
@@ -23,7 +35,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
+      <div class="card-columns d-flex-wrap">
         {{#each restaurantsData}}
         <div class="card mb-3">
           <a href="/restaurants/{{this._id}}" class="text-secondary">

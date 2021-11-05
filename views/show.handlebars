@@ -39,7 +39,7 @@
       <div class="button d-flex justify-content-center">
         <a href="/restaurants/{{restaurant._id}}/edit"><button class="btn btn-primary btn-sm mr-2">修改資訊</button></a>
         <a href="/"><button class="btn btn-info btn-sm mr-2">返回名單</button></a>
-        <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+        <form action="/restaurants/{{restaurant._id}}?_method=DELETE" method="POST">
           <button type="submit" class="btn btn-secondary btn-sm text-white mr-2">移除餐廳</button>
         </form>
       </div>

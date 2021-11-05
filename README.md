@@ -73,6 +73,10 @@ ctrl + c
 
 not yet
 
+## 版本更新
+
+2021.11.06 - 增加排序功能
+
 ## 使用工具
 
 - [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) - 開發環境

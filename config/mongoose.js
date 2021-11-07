@@ -1,5 +1,9 @@
 const mongoose = require('mongoose') // 載入 mongoose
-mongoose.connect('mongodb://localhost/restaurant-list') // 設定連線到 mongoDB
+
+// for heroku
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/restaurant-list'
+
+mongoose.connect(MONGODB_URI) // 設定連線到 mongoDB
 
 // 取得資料庫連線狀態
 const db = mongoose.connection

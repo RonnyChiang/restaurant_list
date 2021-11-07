@@ -5,7 +5,7 @@ const methodOverride = require('method-override') // 載入 method-override
 
 const routes = require('./routes')  // 引用路由器
 require('./config/mongoose') // 引用mongoose
-const port = 3000
+const PORT = process.env.PORT || 3000
 const app = express()
 
 // template engine
@@ -20,6 +20,6 @@ app.use(methodOverride('_method')) //methodOverride
 app.use(routes)
 
 // start and listen on the Express server
-app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`)
 })

@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 const routes = require('./routes')  // 引用路由器
 const usePassport = require('./config/passport')
 require('./config/mongoose') // 引用mongoose
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 const app = express()
 
 // template engine

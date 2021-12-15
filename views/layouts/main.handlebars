@@ -20,7 +20,17 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單" />
           就。餐。聽
         </a>
+        {{#if isAuthenticated}}
+        {{!-- 需至中 --}}
+        <a class="navbar-brand" href="/"><i class="fas fa-user-circle"></i> {{
+          user.name}} 您好！
+        </a>
+        {{!-- // 需靠右對齊 --}}
         <a href="/restaurants/new" class="btn btn-outline-info">新增餐廳</a>
+        <a href="/users/logout" class="btn btn-outline-info">Logout</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-outline-info">Login</a>
+        {{/if}}
 
       </div>
     </nav>

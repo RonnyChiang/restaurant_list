@@ -56,8 +56,8 @@ db.once("open", () => {
             const userId = user._id;
             const candidateRestaurantIndices = Array.from(
               { length: 3 },
-              (_, rId) => rId
-            ); // FIXME: generate the index list by user id
+              (_, rId) => uId * 3 + rId
+            );
 
             const candidateRestaurants = candidateRestaurantIndices.map(
               index => restaurantList[index]

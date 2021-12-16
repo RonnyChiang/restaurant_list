@@ -63,36 +63,37 @@ db.once("open", () => {
               index => restaurantList[index]
             );
 
-            return candidateRestaurants.map(restaurant => {
-              const {
-                name,
-                name_en,
-                category,
-                image,
-                location,
-                phone,
-                google_map,
-                rating,
-                description
-              } = restaurant;
+            return Promise.all(
+              candidateRestaurants.map(restaurant => {
+                const {
+                  name,
+                  name_en,
+                  category,
+                  image,
+                  location,
+                  phone,
+                  google_map,
+                  rating,
+                  description
+                } = restaurant;
 
-              restaurants.create({
-                name,
-                name_en,
-                category,
-                image,
-                location,
-                phone,
-                google_map,
-                rating,
-                description,
-                userId
-              });
-            });
+                return restaurants.create({
+                  name,
+                  name_en,
+                  category,
+                  image,
+                  location,
+                  phone,
+                  google_map,
+                  rating,
+                  description,
+                  userId
+                });
+              })
+            );
           })
       )
     )
-
       .catch(err => console.log(err))
       .then(() => {
         console.log("done.");

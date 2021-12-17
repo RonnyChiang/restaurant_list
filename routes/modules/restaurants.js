@@ -87,8 +87,7 @@ router.post("/", (req, res) => {
 // info page
 router.get('/:restaurantId', (req, res) => {
   const userId = req.user._id
-  const id = req.params.restaurantId
-  console.log(_id)
+  const _id = req.params.restaurantId
   return restaurants.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render("show", { restaurant }))
@@ -104,8 +103,8 @@ router.get('/:restaurantId', (req, res) => {
 // edit page
 router.get('/:restaurantId/edit', (req, res) => {
   const userId = req.user._id
-  const id = req.params.restaurantId
-  return restaurants.findOne({ id, userId })
+  const _id = req.params.restaurantId
+  return restaurants.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render("edit", { restaurant }))
     .catch(err => {
@@ -120,11 +119,11 @@ router.get('/:restaurantId/edit', (req, res) => {
 // edit info
 router.put("/:restaurantId", (req, res) => {
   const userId = req.user._id
-  const id = req.params.restaurantId
+  const _id = req.params.restaurantId
   const {
     name, name_en, category, image, location, phone, google_map, rating, description
   } = req.body
-  return restaurants.findOne({ id, userId })
+  return restaurants.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = name
       restaurant.name_en = name_en
@@ -142,7 +141,7 @@ router.put("/:restaurantId", (req, res) => {
     .catch(err => {
       console.log(err)
       res.render(
-        'errorPage',
+        'error',
         { status: 500, error: err.message }
       )
     })
@@ -151,8 +150,8 @@ router.put("/:restaurantId", (req, res) => {
 //delete function
 router.delete('/:restaurantId', (req, res) => {
   const userId = req.user._id
-  const id = req.params.restaurantId
-  return restaurants.findOne({ id, userId })
+  const _id = req.params.restaurantId
+  return restaurants.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(err => {

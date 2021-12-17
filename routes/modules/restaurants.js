@@ -88,7 +88,8 @@ router.post("/", (req, res) => {
 router.get('/:restaurantId', (req, res) => {
   const userId = req.user._id
   const id = req.params.restaurantId
-  return restaurants.findOne({ id, userId })
+  console.log(_id)
+  return restaurants.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render("show", { restaurant }))
     .catch(err => {

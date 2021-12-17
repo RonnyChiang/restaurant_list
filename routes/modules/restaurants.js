@@ -137,7 +137,7 @@ router.put("/:restaurantId", (req, res) => {
 
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(err => {
       console.log(err)
       res.render(

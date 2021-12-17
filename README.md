@@ -76,7 +76,7 @@ ctrl + c
 
 ## Screen Photo
 
-<img width="904" alt="截圖 2021-12-17 下午4 00 37" src="https://user-images.githubusercontent.com/43169057/146519630-9433f40a-aa49-455b-863f-5962d368c194.png">
+<img width="1352" alt="截圖 2021-12-17 下午5 26 05" src="https://user-images.githubusercontent.com/43169057/146521979-9f5f3885-4fc0-46a4-8b77-2f08b349e05d.png">
 
 ## 版本更新 
 

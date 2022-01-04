@@ -12,23 +12,6 @@
 6. 修改餐廳資訊
 7. 移除餐廳
 
-### 安裝資料庫
-
-請先確認安裝有安裝mongoDB(4.2.17)
-
-1.至官網下載4.2.17版本https://www.mongodb.com/download-center/community
-
-2.將資料夾移動至/Users/[你的使用者名稱]/改名為"mongodb"，並於同階層新增"mongodb-data"資料夾
-
-3.執行mongoDB
-```
-cd ~/mongodb/bin/       // 切換到 mongodb 目錄
-```
-```
-./mongod --dbpath /Users/[你的使用者名稱]/mongodb-data
-```
-若能於系統訊息中查詢到"waiting for connections on port 27017"，即表示資料庫成功連接。
-
 ### 安裝
 
 1.開啟終端機(Terminal)cd 到存放專案本機位置並執行:
@@ -83,19 +66,4 @@ ctrl + c
 2021.11.06 - 增加排序功能
 
 2021.12.17 - 增加帳號登入機制，並建立預設測試帳user1@example.com及user2@example.com包含相關種子資料．
-
-## 使用工具
-
-- [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) - 開發環境
-- [node.js 14.16.0](https://nodejs.org/en/) - 開發環境
-- [Express 4.17.1](https://www.npmjs.com/package/express) - 應用程式架構
-- [Express-handlebars 5.3.4](https://www.npmjs.com/package/express) - 樣版引擎
-- [mongoose 6.0.12](https://www.npmjs.com/package/express) - Object Document Mapper
-- [mongoDB 4.2.17](https://www.mongodb.com/download-center/community) - 非關聯式資料庫
-- [Robo 3T Only](https://robomongo.org/download/) - 資料庫圖形介面軟體
-- [bcryptjs 2.4.3](https://www.npmjs.com/package/bcryptjs) - 密碼雜湊工具
-- [connect-flash 0.1.1](https://www.npmjs.com/package/connect-flash) - 提示訊息工具
-- [express-session 1.17.2](https://www.npmjs.com/package/express-session) - 狀態處理
-- [passport 0.5.0](https://http://www.passportjs.org/) - 登入工具
-
 
